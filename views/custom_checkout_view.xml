@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_checkout_form" inherit_id="website_sale.checkout"
+        name="Custom Checkout Form">
+        <xpath expr="//div[@id='shop_checkout']" position="before">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/custom_checkout/static/src/js/checkout_form.js"></script>
+            </xpath>
+            <div id="custom_checkout">
+                <!-- Paso 1: Datos de facturación -->
+                <div class="form-group">
+                    <label>¿Boleta o Factura?</label>
+                    <select id="tipo_documento" class="form-control">
+                        <option value="boleta">Boleta</option>
+                        <option value="factura">Factura</option>
+                    </select>
+                </div>
+
+                <!-- Campos para BOLETA -->
+                <div id="boleta_fields">
+                    <div class="form-group">
+                        <label>Nombre y apellidos *</label>
+                        <input type="text" class="form-control" id="boleta_nombre" />
+                    </div>
+                    <div class="form-group">
+                        <label>Rut *</label>
+                        <input type="text" class="form-control" id="boleta_rut" />
+                    </div>
+                    <div class="form-group">
+                        <label>Correo electrónico *</label>
+                        <input type="email" class="form-control" id="boleta_email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono *</label>
+                        <input type="text" class="form-control" id="boleta_telefono" />
+                    </div>
+                </div>
+
+                <!-- Campos para FACTURA -->
+                <div id="factura_fields" style="display: none;">
+                    <div class="form-group">
+                        <label>Razón social *</label>
+                        <input type="text" class="form-control" id="factura_razon" />
+                    </div>
+                    <div class="form-group">
+                        <label>Rut *</label>
+                        <input type="text" class="form-control" id="factura_rut" />
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección Empresa *</label>
+                        <input type="text" class="form-control" id="factura_direccion" />
+                    </div>
+                    <div class="form-group">
+                        <label>Región Empresa *</label>
+                        <select class="form-control" id="factura_region">
+                            <option>Seleccione región</option>
+                            <option>Región 1</option>
+                            <option>Región 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Comuna *</label>
+                        <input type="text" class="form-control" id="factura_comuna" />
+                    </div>
+                    <div class="form-group">
+                        <label>Giro *</label>
+                        <input type="text" class="form-control" id="factura_giro" />
+                    </div>
+                    <div class="form-group">
+                        <label>Correo electrónico *</label>
+                        <input type="email" class="form-control" id="factura_email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono *</label>
+                        <input type="text" class="form-control" id="factura_telefono" />
+                    </div>
+                </div>
+
+                <!-- Paso 2: Método de entrega -->
+                <div class="form-group">
+                    <label>¿Despacho a domicilio o retiro en sucursal?</label>
+                    <select id="tipo_entrega" class="form-control">
+                        <option value="domicilio">Domicilio</option>
+                        <option value="sucursal">Retiro en sucursal</option>
+                    </select>
+                </div>
+
+                <!-- Campos para DOMICILIO -->
+                <div id="domicilio_fields">
+                    <div class="form-group">
+                        <label>Región envío *</label>
+                        <select class="form-control" id="domicilio_region">
+                            <option>Seleccione región</option>
+                            <option>Región 1</option>
+                            <option>Región 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección *</label>
+                        <input type="text" class="form-control" id="domicilio_direccion" />
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre de quien recibe *</label>
+                        <input type="text" class="form-control" id="domicilio_receptor" />
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono de quien recibe *</label>
+                        <input type="text" class="form-control" id="domicilio_telefono" />
+                    </div>
+                </div>
+
+                <!-- Campos para RETIRO EN SUCURSAL -->
+                <div id="sucursal_fields" style="display: none;">
+                    <div class="form-group">
+                        <label>Sucursal de retiro *</label>
+                        <input type="text" class="form-control" id="sucursal_nombre" />
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
