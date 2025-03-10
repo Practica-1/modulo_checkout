@@ -2,12 +2,23 @@
 <odoo>
     <template id="custom_checkout_form" inherit_id="website_sale.checkout"
         name="Custom Checkout Form">
-        <xpath expr="//div[@id='shop_checkout']" position="before">
-            <xpath expr="." position="inside">
-                <script type="text/javascript" src="/custom_checkout/static/src/js/checkout_form.js"></script>
-            </xpath>
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css"
+                href="/custom_checkout/static/src/css/checkout.css" />
+        </xpath>
+
+        <xpath expr="//div[@id='shop_checkout']" position="inside">
+            <script type="text/javascript" src="/custom_checkout/static/src/js/checkout_form.js"></script>
+        </xpath>
+
+        <xpath expr="//div[@id='shop_checkout']" position="inside">
             <div id="custom_checkout">
-                <!-- Paso 1: Datos de facturación -->
+
+
+                <div class="text-secondary mb-5">
+                    <h4>Paso 1: Datos de facturación</h4>
+                </div>
+
                 <div class="form-group">
                     <label>¿Boleta o Factura?</label>
                     <select id="tipo_documento" class="form-control">
@@ -16,7 +27,7 @@
                     </select>
                 </div>
 
-                <!-- Campos para BOLETA -->
+                <!-- BOLETA -->
                 <div id="boleta_fields">
                     <div class="form-group">
                         <label>Nombre y apellidos *</label>
@@ -36,7 +47,7 @@
                     </div>
                 </div>
 
-                <!-- Campos para FACTURA -->
+                <!--FACTURA -->
                 <div id="factura_fields" style="display: none;">
                     <div class="form-group">
                         <label>Razón social *</label>
@@ -76,7 +87,10 @@
                     </div>
                 </div>
 
-                <!-- Paso 2: Método de entrega -->
+                <div class="text-secondary my-5">
+                    <h4>Paso 2: Método de entrega</h4>
+                </div>
+
                 <div class="form-group">
                     <label>¿Despacho a domicilio o retiro en sucursal?</label>
                     <select id="tipo_entrega" class="form-control">
@@ -85,7 +99,8 @@
                     </select>
                 </div>
 
-                <!-- Campos para DOMICILIO -->
+                <!--RETIRO
+                DOMICILIO -->
                 <div id="domicilio_fields">
                     <div class="form-group">
                         <label>Región envío *</label>
@@ -109,8 +124,16 @@
                     </div>
                 </div>
 
-                <!-- Campos para RETIRO EN SUCURSAL -->
+                <!-- RETIRO EN SUCURSAL -->
                 <div id="sucursal_fields" style="display: none;">
+                    <div class="form-group">
+                        <label>Nombre de quien retira *</label>
+                        <input type="text" class="form-control" id="domicilio_receptor_2" />
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono de quien retira *</label>
+                        <input type="text" class="form-control" id="domicilio_telefono_2" />
+                    </div>
                     <div class="form-group">
                         <label>Sucursal de retiro *</label>
                         <input type="text" class="form-control" id="sucursal_nombre" />

@@ -1,35 +1,38 @@
-odoo.define('custom_checkout.checkout_form', function (require) {
+/** @odoo-module **/
+
+odoo.define('custom_checkout', function (require) {
     "use strict";
 
     var publicWidget = require('web.public.widget');
 
-    publicWidget.registry.CheckoutForm = publicWidget.Widget.extend({
+    publicWidget.registry.CustomCheckout = publicWidget.Widget.extend({
         selector: '#custom_checkout',
+
         events: {
-            'change #tipo_documento': '_onChangeTipoDocumento',
-            'change #tipo_entrega': '_onChangeTipoEntrega',
+            'change #tipo_documento': '_onTipoDocumentoChange',
         },
 
-        _onChangeTipoDocumento: function (ev) {
-            var tipo = $(ev.currentTarget).val();
-            if (tipo === "boleta") {
-                $("#boleta_fields").show();
-                $("#factura_fields").hide();
-            } else {
-                $("#boleta_fields").hide();
-                $("#factura_fields").show();
-            }
+        start: function () {
+            this._super.apply(this, arguments);
+            this._toggleFields();
         },
 
-        _onChangeTipoEntrega: function (ev) {
-            var tipo = $(ev.currentTarget).val();
-            if (tipo === "domicilio") {
-                $("#domicilio_fields").show();
-                $("#sucursal_fields").hide();
+        _onTipoDocumentoChange: function () {
+            this._toggleFields();
+        },
+
+        _toggleFields: function () {
+            let tipoDocumento = this.$('#tipo_documento').val();
+
+            if (tipoDocumento === 'boleta') {
+                this.$('#boleta_fields').show();
+                this.$('#factura_fields').hide();
             } else {
-                $("#domicilio_fields").hide();
-                $("#sucursal_fields").show();
+                this.$('#boleta_fields').hide();
+                this.$('#factura_fields').show();
             }
         }
     });
+
+    return publicWidget.registry.CustomCheckout;
 });
